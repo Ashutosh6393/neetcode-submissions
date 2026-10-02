@@ -1,0 +1,38 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+
+        result = []
+
+        nums.sort()
+
+        
+        for i, a in enumerate(nums):
+            if a > 0:
+                break
+            
+            if i > 0 and a == nums[i-1]: 
+                continue
+
+            j = i + 1
+            k = len(nums) -1
+
+            while j < k: 
+                three_sum = a + nums[j] + nums[k]
+                
+                if three_sum > 0:
+                    k -= 1
+                elif three_sum < 0: 
+                    j += 1
+                else: 
+                    result.append([a, nums[j], nums[k]])
+
+                    j += 1
+                    k -= 1
+
+                    while nums[j] == nums[j-1] and j < k: 
+                        j += 1
+                
+                    
+        return result
+
+        
